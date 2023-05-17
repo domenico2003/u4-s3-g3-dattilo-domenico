@@ -1,4 +1,4 @@
-package poject.utils;
+package poject.DAOs;
 
 import java.util.UUID;
 
@@ -7,18 +7,18 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
 import lombok.extern.slf4j.Slf4j;
-import poject.classDatabase.Evento;
+import poject.classDatabase.Location;
 import poject.exceptions.NotFoundException;
 
 @Slf4j
-public class EventoDAO {
+public class LocationDAO {
 	private EntityManagerFactory emf;
 
-	public EventoDAO(EntityManagerFactory emf) {
+	public LocationDAO(EntityManagerFactory emf) {
 		this.emf = emf;
 	}
 
-	public void save(Evento e) {
+	public void save(Location e) {
 
 		EntityManager em = emf.createEntityManager();
 
@@ -33,13 +33,13 @@ public class EventoDAO {
 		log.info("salvataggio avvenuto con successo");
 	}
 
-	public Evento getById(String id) {
+	public Location getById(String id) {
 		EntityManager em = emf.createEntityManager();
 
 		EntityTransaction transazione = em.getTransaction();
 		transazione.begin();
 
-		Evento risultatoRicerca = em.find(Evento.class, UUID.fromString(id));
+		Location risultatoRicerca = em.find(Location.class, UUID.fromString(id));
 
 		transazione.commit();
 
@@ -54,10 +54,10 @@ public class EventoDAO {
 			EntityTransaction transazione = em.getTransaction();
 			transazione.begin();
 
-			Evento evento = em.find(Evento.class, UUID.fromString(id));
+			Location location = em.find(Location.class, UUID.fromString(id));
 
-			if (evento != null) {
-				em.remove(evento);
+			if (location != null) {
+				em.remove(location);
 				log.info("elemento con id: " + id + " eliminato con successo");
 			} else {
 				throw new NotFoundException("evento non trovato");
@@ -71,17 +71,4 @@ public class EventoDAO {
 
 	}
 
-	public void refresh(String id) {
-		EntityManager em = emf.createEntityManager();
-
-		Evento evento = em.find(Evento.class, UUID.fromString(id));
-		evento.setTitolo("sono stato modificato");
-		log.info("PRE REFRESH");
-		log.info(evento.toString());
-		em.refresh(evento);
-		log.info("POST REFRESH");
-		log.info(evento.toString());
-
-		em.close();
-	}
 }

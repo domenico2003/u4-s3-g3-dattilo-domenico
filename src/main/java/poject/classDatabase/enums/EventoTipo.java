@@ -1,4 +1,4 @@
-package poject.classDatabase;
+package poject.classDatabase.enums;
 
 public enum EventoTipo {
 	PUBBLICO, PRIVATO
