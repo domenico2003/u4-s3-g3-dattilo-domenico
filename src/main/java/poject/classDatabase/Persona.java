@@ -7,6 +7,7 @@ import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -31,7 +32,7 @@ public class Persona {
 	private LocalDate dataDiNascita;
 	@Enumerated(EnumType.STRING)
 	private Gender sesso;
-	@OneToMany
+	@OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
 	private Set<Partecipazione> partecipazioni;
 
 	public Persona(String nome, String cognome, String email, LocalDate dataDiNascita, Gender sesso) {

@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -46,7 +47,7 @@ public class Evento {
 	@Column
 	private int numeroMassimoPartecipanti;
 
-	@OneToMany(mappedBy = "evento")
+	@OneToMany(mappedBy = "evento", fetch = FetchType.EAGER)
 	private Set<Partecipazione> partecipazioni;
 	@OneToOne
 	private Location location;

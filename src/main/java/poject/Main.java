@@ -52,7 +52,7 @@ public class Main {
 		Evento evento2 = eventoDao.getById("b1c082d4-929d-48d0-bbe5-672ac4b95786");
 
 //		System.out.println(evento1.getLocation());
-//		evento2.getPartecipazioni().stream().forEach(p -> System.out.println(p));
+//		evento2.getPartecipazioni().stream().forEach(p -> System.out.println(p.getPersona()));
 
 //RICAVO LE PARTECIPAZIONI E LE TABELLE COLLEGATE
 		Partecipazione partecipazione1 = paDao.getById("007c92b4-f98c-450a-b469-7977409559f6");
